@@ -10,8 +10,8 @@ import Footer from "./Components/Footer";
 function App() {
   return (
     <Router>
-     <Header />
-      <div class="w-full h-screen border-2 bg-orange-400 box-border">
+      <Header />
+      <div class="w-full h-auto box-border">
         <Routes>
           <Route path="/Home" element={<Home />} />
           <Route path="/details/:id" element={<Details />} />

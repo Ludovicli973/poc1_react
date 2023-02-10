@@ -1,6 +1,6 @@
 const Footer = () => {
   return (
-    <div class="h-24 border-2 w-screen box-border flex justify-around items-center flex-col ">
+    <div class="h-24 w-screen box-border flex justify-around items-center flex-col ">
       <ul class=" w-1/2 text-black flex justify-around justify-items-center ">
         <li>
           {" "}
