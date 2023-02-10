@@ -35,11 +35,21 @@ const Details = () => {
       {loading ? (
         <h1>Chargement...</h1>
       ) : (
-        <div class="w-full flex space-x-4 p-4">
-          <img src={anime.image} alt={anime.title} class="h-full aspect-auto" />
-          <div class="flex-col">
-            <h1 class="font-bold text-xl">{anime.title}</h1>
-            <p class="my-4 text-justify">{anime.synopsis}</p>
+        <div class="h-screen">
+          <div class="w-full flex space-x-4 p-4">
+            <img
+              src={anime.image}
+              alt={anime.title}
+              class="h-full aspect-auto"
+            />
+            <div class="flex-col">
+              <h1 class="font-bold text-xl">{anime.title}</h1>
+              {anime.synopsis != "" ? (
+                <p class="my-4 text-justify">{anime.synopsis}</p>
+              ) : (
+                <p class="my-4 text-justify">Pas de synopsis disponible</p>
+              )}
+            </div>
           </div>
         </div>
       )}
