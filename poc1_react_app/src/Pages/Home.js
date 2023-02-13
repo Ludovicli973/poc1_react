@@ -14,7 +14,7 @@ const Home = () => {
       size: "30",
     },
     headers: {
-      "X-RapidAPI-Key": "7143b32c4bmshf27bf859b5ab0a3p1b8e7fjsnb504c13fe516",
+      "X-RapidAPI-Key": process.env.REACT_APP_API_KEY,
       "X-RapidAPI-Host": "anime-db.p.rapidapi.com",
     },
   };
