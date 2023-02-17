@@ -23,7 +23,7 @@ const Home = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "https://anime-db.p.rapidapi.com/anime?page=1&size=4",
+          "https://anime-db.p.rapidapi.com/anime?page=1&size=30",
           options
         );
         setData(response.data.data);
@@ -34,7 +34,7 @@ const Home = () => {
       }
     };
     fetchData();
-  }, []);
+  }, [options]);
 
   return (
     <>
