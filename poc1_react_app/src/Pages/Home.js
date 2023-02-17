@@ -7,6 +7,7 @@ const Home = () => {
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
 
+  console.log(process.env);
   const options = {
     method: "GET",
     params: {
@@ -34,7 +35,7 @@ const Home = () => {
       }
     };
     fetchData();
-  }, [options]);
+  }, []);
 
   return (
     <>
