@@ -44,7 +44,7 @@ const Details = () => {
             />
             <div class="flex-col">
               <h1 class="font-bold text-xl">{anime.title}</h1>
-              {anime.synopsis !== "" ? (
+              {anime.synopsis ? (
                 <p class="my-4 text-justify">{anime.synopsis}</p>
               ) : (
                 <p class="my-4 text-justify">Pas de synopsis disponible</p>
