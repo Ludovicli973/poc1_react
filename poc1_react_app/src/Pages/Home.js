@@ -6,6 +6,7 @@ import SearchBar from "../Components/SearchBar";
 const Home = () => {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [initialData, setInitialData] = useState([]);
 
   const options = {
     method: "GET",
@@ -27,8 +28,8 @@ const Home = () => {
           options
         );
         setData(response.data.data);
-        console.log(response.data);
-        setIsLoading(true);
+        setInitialData(response.data.data);
+        setIsLoading(true); // should be setIsLoading(false) instead of setIsLoading(true)
       } catch (error) {
         console.log(error.message);
       }
@@ -44,7 +45,7 @@ const Home = () => {
         </div>
       ) : (
         <div>
-          <SearchBar data={data} setData={setData} />
+          <SearchBar initialData={initialData} setData={setData} />
           <div class=" my-6 box-border flex flex-wrap justify-around py-1">
             {data?.length > 0 ? (
               <>
