@@ -51,7 +51,7 @@ const Home = () => {
                 {" "}
                 {data.map((anime, index) => {
                   return (
-                    <div key={index}>
+                    <div key={index} class="my-10">
                       <Card anime={anime} />
                     </div>
                   );
