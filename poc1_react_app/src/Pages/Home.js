@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Card from "../Components/Card";
-
+import SearchBar from "../Components/SearchBar";
 
 const Home = () => {
-  const [data, setData] = useState();
+  const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  console.log(process.env);
   const options = {
     method: "GET",
     params: {
@@ -44,14 +43,24 @@ const Home = () => {
           <p>En cours de chargements...</p>
         </div>
       ) : (
-        <div class=" box-border flex flex-wrap justify-around py-1">
-          {data?.map((anime, index) => {
-            return (
-              <div key={index}>
-              <Card anime={anime} />
-              </div>
-            );
-          })}
+        <div>
+          <SearchBar data={data} setData={setData} />
+          <div class=" my-6 box-border flex flex-wrap justify-around py-1">
+            {data?.length > 0 ? (
+              <>
+                {" "}
+                {data.map((anime, index) => {
+                  return (
+                    <div key={index}>
+                      <Card anime={anime} />
+                    </div>
+                  );
+                })}
+              </>
+            ) : (
+              <p>Not Found</p>
+            )}
+          </div>
         </div>
       )}
     </>
