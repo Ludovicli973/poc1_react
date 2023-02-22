@@ -1,16 +1,23 @@
 import { useState } from "react";
 import axios from "axios";
 
-function SearchBar({ data, setData }) {
+function SearchBar({ initialData, setData }) {
   const [animeName, setAnimeName] = useState("");
 
   function handleSearch(e) {
-    console.log(data);
     e.preventDefault();
-    const anime = data.filter((element) => element.title.includes(animeName));
+
+    const anime = initialData.filter((element) =>
+      element.title.includes(animeName)
+    );
     setData(anime);
   }
-  console.log(animeName);
+
+  function resetSearch() {
+    setData(initialData);
+    setAnimeName("");
+  }
+
   return (
     <div className="flex items-center">
       <form onSubmit={handleSearch}>
@@ -22,6 +29,7 @@ function SearchBar({ data, setData }) {
             type="text"
             className="block w-full px-4 py-2 text-purple-700 bg-white border rounded-full focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
             placeholder="Search..."
+            value={animeName}
           />
           <button
             type="submit"
@@ -42,6 +50,15 @@ function SearchBar({ data, setData }) {
               />
             </svg>
           </button>
+          {animeName !== "" && (
+            <button
+              type="button"
+              onClick={resetSearch}
+              className="px-4 text-purple-600 border border-purple-600 rounded-full "
+            >
+              Clear
+            </button>
+          )}
         </div>
       </form>
     </div>
