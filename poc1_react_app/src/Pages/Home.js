@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import Card from "../Components/Card";
+
 
 const Home = () => {
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(true);
-  const navigate = useNavigate();
 
   console.log(process.env);
   const options = {
@@ -45,20 +45,10 @@ const Home = () => {
         </div>
       ) : (
         <div class=" box-border flex flex-wrap justify-around py-1">
-          {data?.map((el, index) => {
+          {data?.map((anime, index) => {
             return (
-              <div
-                key={index}
-                class="w-[200px] h-[270px] my-1 "
-                onClick={() => navigate(`/details/${el._id}`)}
-              >
-                <img
-                  src={el.image}
-                  alt="poster"
-                  class="w-full h-full object-cover"
-                />
-                <p> {el.title}</p>
-                <p>{el.Type}</p>
+              <div key={index}>
+              <Card anime={anime} />
               </div>
             );
           })}
