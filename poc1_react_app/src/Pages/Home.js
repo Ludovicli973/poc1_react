@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+// import axios from "axios";
 import Card from "../Components/Card";
 import SearchBar from "../Components/SearchBar";
 
@@ -23,12 +23,20 @@ const Home = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(
-          "https://anime-db.p.rapidapi.com/anime?page=1&size=30",
-          options
-        );
-        setData(response.data.data);
-        setInitialData(response.data.data);
+        // const response = await axios.get(
+        //   "https://anime-db.p.rapidapi.com/anime?page=1&size=30",
+        //   options
+        // );
+        // setData(response.data.data);
+        // setInitialData(response.data.data);
+
+        fetch("https://anime-db.p.rapidapi.com/anime?page=1&size=30", options)
+          .then((res) => res.json())
+          .then((data) => {
+            setData(data);
+            setInitialData(data);
+          });
+
         setIsLoading(true); // should be setIsLoading(false) instead of setIsLoading(true)
       } catch (error) {
         console.log(error.message);

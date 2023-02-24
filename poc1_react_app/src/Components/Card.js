@@ -9,7 +9,7 @@ function Card({ anime }) {
       onClick={() => navigate(`/details/${anime._id}`)}
     >
       <img src={anime.image} alt="poster" class="w-full h-full object-cover" />
-      <p> {anime.title}</p>
+      <h1> {anime.title}</h1>
       <p>{anime.Type}</p>
     </div>
   );
