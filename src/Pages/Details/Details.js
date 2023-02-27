@@ -23,10 +23,14 @@ const Details = () => {
       },
     };
 
-    fetch(`https://anime-db.p.rapidapi.com/anime/by-id/${id}`, options)
-      .then((res) => res.json())
-      .then((data) => handleAnime(data));
-
+    try {
+      fetch(`https://anime-db.p.rapidapi.com/anime/by-id/${id}`, options)
+        .then((res) => res.json())
+        .then((data) => handleAnime(data));
+    } catch (e) {
+      console.log("erreur : " + e);
+      handleAnime({});
+    }
     handleLoading();
   }, [id]);
 
@@ -34,7 +38,7 @@ const Details = () => {
     <>
       {loading ? (
         <h1>Chargement...</h1>
-      ) : (
+      ) : Object.keys(anime).length !== 0 ? (
         <div class="h-screen">
           <div class="w-full flex space-x-4 p-4">
             <img
@@ -52,6 +56,8 @@ const Details = () => {
             </div>
           </div>
         </div>
+      ) : (
+        <h1>Anime introuvable</h1>
       )}
     </>
   );
