@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import Card from "../Components/Card/Card";
-import SearchBar from "../Components/SearchBar/SearchBar";
+import Card from "../../Components/Card/Card";
+import SearchBar from "../../Components/SearchBar/SearchBar";
 
 const Home = () => {
   const [data, setData] = useState([]);
