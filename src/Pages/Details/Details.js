@@ -26,12 +26,13 @@ const Details = () => {
     try {
       fetch(`https://anime-db.p.rapidapi.com/anime/by-id/${id}`, options)
         .then((res) => res.json())
-        .then((data) => handleAnime(data));
+        .then((data) => handleAnime(data))
+        .then(() => handleLoading());
     } catch (e) {
       console.log("erreur : " + e);
       handleAnime({});
+      handleLoading();
     }
-    handleLoading();
   }, [id]);
 
   return (
