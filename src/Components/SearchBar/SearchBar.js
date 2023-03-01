@@ -32,6 +32,7 @@ function SearchBar({ initialData, setData }) {
           />
           <button
             type="submit"
+            role="search_button"
             className="px-4 text-white bg-purple-600 rounded-full "
           >
             <svg
@@ -53,6 +54,7 @@ function SearchBar({ initialData, setData }) {
             <button
               type="button"
               onClick={resetSearch}
+              role="clear_button"
               className="px-4 text-purple-600 border border-purple-600 rounded-full "
             >
               Clear
