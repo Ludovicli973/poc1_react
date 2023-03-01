@@ -1,6 +1,11 @@
 import "./App.css";
 import Header from "./Components/Header/Header";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 import Details from "./Pages/Details/Details";
 import Home from "./Pages/Home/Home";
 
@@ -13,7 +18,7 @@ function App() {
       <Header />
       <div class="w-full h-auto box-border">
         <Routes>
-          <Route path="/Home" element={<Home />} />
+          <Route path="/" element={<Home />} />
           <Route path="/details/:id" element={<Details />} />
         </Routes>
       </div>
