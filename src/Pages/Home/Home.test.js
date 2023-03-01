@@ -762,7 +762,6 @@ test("when you click on the clear button after typing something, you should have
       <Home />;
     </Router>
   );
-
   const input = await screen.findByPlaceholderText("Search...");
   userEvent.type(input, "fullmetal");
   const button = await screen.findByRole("clear_button");
