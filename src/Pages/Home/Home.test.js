@@ -5,7 +5,7 @@ import { setupServer } from "msw/node";
 import { BrowserRouter as Router } from "react-router-dom";
 import userEvent from "@testing-library/user-event";
 
-//Configuration MOCK API
+// MOCK : API call for the Home page
 
 const server_data = [
   {
