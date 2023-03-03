@@ -12,7 +12,6 @@ test("test from the homepage to the detail page", async ({ page }) => {
   await page.getByPlaceholder("Search...").fill("Fullmetal");
 
   // click on the search button
-  // await page.getByRole("button", { name: "search_button" }).click();
   await page.locator("#search_button").click();
 
   // expect to have an anime with the title "Fullmetal Alchemist: Brotherhood"
