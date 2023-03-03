@@ -5,7 +5,6 @@ function SearchBar({ initialData, setData }) {
 
   function handleSearch(e) {
     e.preventDefault();
-
     const anime = initialData.filter((element) =>
       element.title.includes(animeName)
     );

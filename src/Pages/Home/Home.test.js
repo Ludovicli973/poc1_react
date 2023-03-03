@@ -742,15 +742,16 @@ test("in the home page, when you type 'fullmetal' in the search bar and click on
   expect(elem).toBeInTheDocument();
 });
 
-test("when you click on the clear button after you searched something, you should have 30 animes again", async () => {
+test("when you click on the clear button after typing something, you should have 30 animes again", async () => {
   render(
     <Router>
       <Home />;
     </Router>
   );
-
   const input = await screen.findByPlaceholderText("Search...");
   userEvent.type(input, "fullmetal");
+  const button = await screen.findByRole("clear_button");
+  userEvent.click(button);
   const search_button = await screen.findByRole("search_button");
   userEvent.click(search_button);
   const clear_button = await screen.findByRole("clear_button");
