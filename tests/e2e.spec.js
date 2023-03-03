@@ -29,7 +29,7 @@ test("test from the homepage to the detail page", async ({ page }) => {
     page.getByText("Fullmetal Alchemist: Brotherhood")
   ).toBeVisible();
 
-  // expect to have an image
+  // expect to have the right image for the anime :"Fullmetal Alchemist: Brotherhood"
   await expect(
     page.getByRole("img", { name: "Fullmetal Alchemist: Brotherhood" })
   ).toBeVisible();
