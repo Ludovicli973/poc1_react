@@ -10,7 +10,7 @@ function Card({ anime }) {
     >
       <img src={anime.image} alt="poster" class="w-full h-full object-cover" />
       <p> {anime.title}</p>
-      <p>{anime.Type}</p>
+      <p>{anime.type}</p>
     </div>
   );
 }

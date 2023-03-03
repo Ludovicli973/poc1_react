@@ -5,7 +5,7 @@ import { setupServer } from "msw/node";
 import { BrowserRouter as Router } from "react-router-dom";
 import userEvent from "@testing-library/user-event";
 
-//Configuration MOCK API
+// MOCK : API call for the Home page
 
 const server_data = [
   {
@@ -742,20 +742,6 @@ test("in the home page, when you type 'fullmetal' in the search bar and click on
   expect(elem).toBeInTheDocument();
 });
 
-test("when you click on the clear button after typing something, the search bar should be empty", async () => {
-  render(
-    <Router>
-      <Home />;
-    </Router>
-  );
-
-  const input = await screen.findByPlaceholderText("Search...");
-  userEvent.type(input, "fullmetal");
-  const button = await screen.findByRole("clear_button");
-  userEvent.click(button);
-  expect(input.value).toEqual("");
-});
-
 test("when you click on the clear button after typing something, you should have 30 animes again", async () => {
   render(
     <Router>
@@ -766,6 +752,10 @@ test("when you click on the clear button after typing something, you should have
   userEvent.type(input, "fullmetal");
   const button = await screen.findByRole("clear_button");
   userEvent.click(button);
+  const search_button = await screen.findByRole("search_button");
+  userEvent.click(search_button);
+  const clear_button = await screen.findByRole("clear_button");
+  userEvent.click(clear_button);
   const elem = await screen.findAllByAltText("poster");
   expect(elem.length).toEqual(server_data.length);
 });
