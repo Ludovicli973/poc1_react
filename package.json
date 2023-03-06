@@ -39,11 +39,8 @@
     ]
   },
   "devDependencies": {
-<<<<<<< HEAD
     "@playwright/test": "^1.31.1",
     "axios": "^1.3.2",
-=======
->>>>>>> main
     "gh-pages": "^5.0.0",
     "puppeteer": "^19.7.1",
     "msw": "^1.1.0",
