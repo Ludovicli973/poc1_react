@@ -32,4 +32,11 @@ test("test from the homepage to the detail page", async ({ page }) => {
   await expect(
     page.getByRole("img", { name: "Fullmetal Alchemist: Brotherhood" })
   ).toBeVisible();
+
+  // expect to have a synopsis
+  await expect(
+    page.getByText(
+      /After a horrific alchemy experiment goes wrong in the Elric household./i
+    )
+  ).toBeVisible();
 });
