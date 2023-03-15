@@ -1,43 +1,44 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import SearchBar from "./SearchBar";
 
 const mockedSetData = jest.fn();
 const initialData = [];
-describe("SearchBar", () => {
-  test("when you click on the clear button after typing something, the search bar should be empty", () => {
-    //Given
+
+describe("When the searchbar is empty", () => {
+  test("The clear button should be invisible", async () => {
     render(<SearchBar initialData={initialData} setData={mockedSetData} />);
 
-    //When
-    const input = screen.getByPlaceholderText(/Search.../i);
-    fireEvent.change(input, { target: { value: "fullmetal" } });
-    const clearButton = screen.getByRole("clear_button");
-    fireEvent.click(clearButton);
-
-    //Then
-    expect(input.value).toBe("");
+    const clear_button = await screen.queryByRole("button", {
+      name: "Clear",
+    });
+    expect(clear_button).not.toBeInTheDocument();
   });
-  test("when search input is empty, clear button should be invisible", () => {
-    //Given
+});
+
+describe("When the searchbar is not empty", () => {
+  test("The clear button should be visible", async () => {
     render(<SearchBar initialData={initialData} setData={mockedSetData} />);
 
-    //When
-    const clearButton = screen.queryByRole("clear_button");
-
-    //Then
-    expect(clearButton).toBeNull();
+    const input = await screen.findByPlaceholderText("Search...");
+    userEvent.type(input, "fullmetal");
+    const clear_button = await screen.findByRole("button", {
+      name: "Clear",
+    });
+    expect(clear_button).toBeVisible();
   });
+});
 
-  test("when search input is not empty, clear button should be visible", () => {
-    //Given
+describe("When you have some text in the searchbar and you click on the clear button", () => {
+  test("The searchbar should become empty", async () => {
     render(<SearchBar initialData={initialData} setData={mockedSetData} />);
 
-    //When
-    const input = screen.getByPlaceholderText(/Search.../i);
-    fireEvent.change(input, { target: { value: "fullmetal" } });
-    const clearButton = screen.queryByRole("clear_button");
-
-    //Then
-    expect(clearButton).not.toBeNull();
+    const input = await screen.findByPlaceholderText("Search...");
+    userEvent.type(input, "fullmetal");
+    const clear_button = await screen.findByRole("button", {
+      name: "Clear",
+    });
+    userEvent.click(clear_button);
+    expect(input).toHaveValue("");
   });
 });

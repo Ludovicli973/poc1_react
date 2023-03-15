@@ -31,8 +31,9 @@ function SearchBar({ initialData, setData }) {
           />
           <button
             type="submit"
-            id="search_button"
             className="px-4 text-white bg-purple-600 rounded-full "
+            aria-label="search_button"
+            id="search_button"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
