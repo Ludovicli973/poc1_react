@@ -14,6 +14,9 @@ test("test from the homepage to the detail page", async ({ page }) => {
   // click on the search button
   await page.locator("#search_button").click();
 
+  // expect to only have 1 anime
+  await expect(page.getByAltText("poster")).toHaveCount(1);
+
   // expect to have an anime with the title "Fullmetal Alchemist: Brotherhood"
   expect(page.getByText(/Fullmetal Alchemist: Brotherhood/i)).toBeVisible();
 
