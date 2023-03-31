@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { getSpecificAnime } from "../../services/api";
 
 const Details = () => {
   let { id } = useParams();
@@ -15,24 +16,13 @@ const Details = () => {
   };
 
   useEffect(() => {
-    const options = {
-      method: "GET",
-      headers: {
-        "X-RapidAPI-Key": process.env.REACT_APP_API_KEY,
-        "X-RapidAPI-Host": "anime-db.p.rapidapi.com",
-      },
+    const fetchSpecificAnime = async () => {
+      const anime = await getSpecificAnime(id);
+      handleAnime(anime);
+      handleLoading();
     };
 
-    try {
-      fetch(`https://anime-db.p.rapidapi.com/anime/by-id/${id}`, options)
-        .then((res) => res.json())
-        .then((data) => handleAnime(data))
-        .then(() => handleLoading());
-    } catch (e) {
-      console.log("erreur : " + e);
-      handleAnime({});
-      handleLoading();
-    }
+    fetchSpecificAnime();
   }, [id]);
 
   return (
