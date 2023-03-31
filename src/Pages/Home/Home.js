@@ -1,56 +1,41 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import Card from "../../Components/Card/Card";
 import SearchBar from "../../Components/SearchBar/SearchBar";
+import { getAllAnime } from "../../services/api";
 
 const Home = () => {
-  const [data, setData] = useState([]);
+  const [AnimeList, setAnimeList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [initialData, setInitialData] = useState([]);
+  const [initialAnimeList, setInitialAnimeList] = useState([]);
 
-  const options = {
-    method: "GET",
-    params: {
-      page: "1",
-      size: "30",
-    },
-    headers: {
-      "X-RapidAPI-Key": process.env.REACT_APP_API_KEY,
-      "X-RapidAPI-Host": "anime-db.p.rapidapi.com",
-    },
+  const fetchAnimeList = async () => {
+    const animeList = await getAllAnime();
+    setAnimeList(animeList);
+    setInitialAnimeList(animeList);
+    setIsLoading(false);
   };
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          "https://anime-db.p.rapidapi.com/anime?page=1&size=30",
-          options
-        );
-        setData(response.data.data);
-        setInitialData(response.data.data);
-        setIsLoading(true); // should be setIsLoading(false) instead of setIsLoading(true)
-      } catch (error) {
-        console.log(error.message);
-      }
-    };
-    fetchData();
+    fetchAnimeList();
   }, []);
 
   return (
     <>
-      {isLoading === false ? (
+      {isLoading ? (
         <div>
-          <p>En cours de chargements...</p>
+          <p>En cours de chargement</p>
         </div>
       ) : (
         <div>
-          <SearchBar initialData={initialData} setData={setData} />
-          <div class=" my-6 box-border flex flex-wrap justify-around py-1">
-            {data?.length > 0 ? (
+          <SearchBar
+            initialAnimeList={initialAnimeList}
+            setAnimeList={setAnimeList}
+          />
+          <div class="my-6 flex flex-wrap justify-around py-1 flex-row">
+            {AnimeList?.length > 0 ? (
               <>
                 {" "}
-                {data.map((anime, index) => {
+                {AnimeList.map((anime, index) => {
                   return (
                     <div key={index} class="my-10">
                       <Card anime={anime} />
