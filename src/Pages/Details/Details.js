@@ -15,6 +15,14 @@ const Details = () => {
     setAnime(current_anime);
   };
 
+  const getSynopsis = (anime) => {
+    let synopsis = "Pas de synopsis disponible";
+    if (anime.synopsis) {
+      synopsis = anime.synopsis;
+    }
+    return synopsis;
+  };
+
   useEffect(() => {
     const fetchSpecificAnime = async () => {
       const anime = await getSpecificAnime(id);
@@ -39,11 +47,7 @@ const Details = () => {
             />
             <div class="flex-col">
               <h1 class="font-bold text-xl">{anime.title}</h1>
-              {anime.synopsis ? (
-                <p class="my-4 text-justify">{anime.synopsis}</p>
-              ) : (
-                <p class="my-4 text-justify">Pas de synopsis disponible</p>
-              )}
+              <p class="my-4 text-justify">{getSynopsis(anime)}</p>
             </div>
           </div>
         </div>
