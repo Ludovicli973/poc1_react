@@ -9,10 +9,10 @@ test("test from the homepage to the detail page", async ({ page }) => {
   await expect(page.getByAltText("poster")).toHaveCount(30);
 
   // fill the search bar with "Fullmetal"
-  await page.getByPlaceholder("Search...").fill("Fullmetal");
+  await page.getByPlaceholder("Search").fill("Fullmetal");
 
   // click on the search button
-  await page.locator("#search_button").click();
+  await page.locator('button:has-text("Search")').click();
 
   // expect to only have 1 anime
   await expect(page.getByAltText("poster")).toHaveCount(1);
