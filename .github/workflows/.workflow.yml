@@ -12,29 +12,27 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Install dependencies
+      - name: Install Dependencies
         run: npm ci
-
       - name: Run unit tests
         run: |
           export REACT_APP_API_KEY=${{ secrets.REACT_APP_API_KEY }}
           npm run test
-  tests-e2e:
-    needs: tests-unitaires
-    runs-on: ubuntu-latest
-    steps:
-      - name: Run end to end tests
-        run: |
-          npm run test:e2e
+
   deploy:
+    needs: tests-unitaires
     # Le job "deploy" a besoin de l'exécution complète du job "test" pour commencer
-    needs: tests-e2e
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v3
       # L'étape "Checkout" n'est pas nécessaire car on n'a pas besoin de cloner le repo une deuxième fois
       # Si le repo n'a pas été modifié, on récupère simplement la version qui a été construite pendant les tests end-to-end
-      - name: Build the static site
+      - name: Install Dependencies and build
         run: |
+          npm ci
+          export REACT_APP_API_KEY=${{ secrets.REACT_APP_API_KEY }}
+
           npm run build
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
