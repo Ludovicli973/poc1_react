@@ -7,10 +7,10 @@ const Header = () => {
       <Link to="/">
         <img src={Logo} alt="Zenika Logo" class="h-full aspect-auto w-[90px]" />
       </Link>
-      <a href="/">Valeurs</a>
-      <a href="/">Offres</a>
-      <a href="/">Green IT</a>
-      <a href="/">Sécurité</a>
+      <Link href="/">Valeurs</Link>
+      <Link href="/">Offres</Link>
+      <Link href="/">Green IT</Link>
+      <Link href="/">Sécurité</Link>
     </div>
   );
 };
