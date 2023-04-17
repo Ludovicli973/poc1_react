@@ -39,3 +39,14 @@ jobs:
         with:
           folder: build
           token: ${{ secrets.GITHUB_TOKEN }}
+  lighthouse:
+    needs: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Audit URLs using Lighthouse
+        uses: treosh/lighthouse-ci-action@v9
+        with:
+          urls: |
+            ${{ vars.REACT_APP_URL }}
+          uploadArtifacts: true # enregistrer les résultats en tant qu'artefacts d'action
